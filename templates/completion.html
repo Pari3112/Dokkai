@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/listening.css') }}">
+    <style>
+        /* Inline Specific Styles */
+        .thank-you-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .thank-you-container h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .thank-you-container p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        .thank-you-button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #000;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+
+        .thank-you-button:hover {
+            background-color: #2EE59D;
+            color: #ffffff;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute; top: 0; left: 0; display: flex; align-items: center; padding: 10px;">
+        <a href="{{ url_for('home') }}" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo-container" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                     alt="Logo" 
+                     class="logo" 
+                     style="width: 50px; height: 50px; margin-right: 10px;">
+                <span class="logo-name" style="font-size: 1.5rem; color: #000000; font-weight: bold;">Dokkai</span>
+            </div>
+        </a>
+    </div>
+    
+    </div>
+    <div class="thank-you-container">
+        <h1>Thank You!</h1>
+        <h3><p>Your results have been saved successfully. Please come back again to play more games!</p></h3>
+        <a href="{{ url_for('home') }}" class="thank-you-button">Back to Home</a>
+    </div>
+</body>
+</html>

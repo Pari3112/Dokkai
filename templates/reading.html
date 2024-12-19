@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homophone Recognition Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        /* Shared Styles */
+        body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: url("{{ url_for('static', filename='images/misc_background.png') }}") no-repeat center center fixed;
+        background-size: cover; /* Ensure the background fills the screen */
+        color: #ffffff;
+    }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .game-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .image-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .image-options button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-options img {
+            width: 200px;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-options img:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #000;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-button:hover {
+            background-color: #2EE59D;
+            color: #ffffff;
+            transform: translateY(-5px);
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #000000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .image-options img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .game-button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute; top: 0; left: 0; display: flex; align-items: center; padding: 10px;">
+        <a href="{{ url_for('home') }}" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo-container" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                     alt="Logo" 
+                     class="logo" 
+                     style="width: 50px; height: 50px; margin-right: 10px;">
+                <span class="logo-name" style="font-size: 1.5rem; color: #000000; font-weight: bold;">Dokkai</span>
+            </div>
+        </a>
+    </div>
+    
+    <div class="game-container">
+        <h1 style="color: black;">Homophone Recognition Game</h1>
+<h2 style="color: black;">Level: {{ level }}</h2>
+<h3><p style="color: black;">Select the correct image for the word: <h2 style="color: black;"><strong>{{ word }}</strong></h2></p></h3>
+
+
+        <!-- Image Options -->
+        <!-- <form method="POST">
+            <div class="image-options">
+                {% for image, correctness in images %}
+                <button type="submit" name="answer" value="{{ correctness }}">
+                    <img src="{{ url_for('static', filename=image) }}" alt="Option">
+                </button>
+                {% endfor %}
+            </div>
+        </form> -->
+<form method="POST">
+    <div class="image-options">
+        {% for image, correctness in images %}
+        <button type="submit" name="answer" value="{{ correctness }}">
+            <input type="hidden" name="selected_image" value="{{ image }}">
+            <img src="{{ url_for('static', filename=image) }}" alt="Option">
+        </button>
+        {% endfor %}
+    </div>
+</form>
+
+        <!-- Status -->
+        <div class="status">
+            <h3>Questions Answered: {{ session['answered_questions'] }} / 10</h3>
+        </div>
+
+        <!-- Back/Home Button -->
+        <!-- <button class="game-button" onclick="window.location.href='{{ url_for('home') }}';">Go Back</button> -->
+    </div>
+</body>
+</html>

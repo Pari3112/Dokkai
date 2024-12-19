@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing: Similar Looking Words</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background: url("{{ url_for('static', filename='images/writing_background.png') }}") no-repeat center center fixed;
+    background-size: cover;  /* Ensure the image covers the entire page */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+        }
+        img {
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .form-control {
+            border-radius: 5px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #ffffff;
+            color: #000;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2EE59D;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div style="position: absolute; top: 0; left: 0; display: flex; align-items: center; padding: 10px;">
+        <a href="{{ url_for('home') }}" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo-container" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                     alt="Logo" 
+                     class="logo" 
+                     style="width: 50px; height: 50px; margin-right: 10px;">
+                <span class="logo-name" style="font-size: 1.5rem; color: #000000; font-weight: bold;">Dokkai</span>
+            </div>
+        </a>
+    </div>
+    
+    <div class="container text-center">
+        <h2 style="color: black; font-weight: bold;">Writing Challenge</h2>
+<h4 style="color: black; font-weight: bold;">Question {{ current_index }} of {{ total }}</h4>
+
+
+
+        {% if question.type == "image" %}
+        <div>
+            <img src="{{ question.image }}" alt="Question Image" class="img-fluid">
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% if question.type == "text" %}
+                <h5>Select the correct word:</h5>
+                {% for option in question.options %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" value="{{ option }}" required>
+                        <label class="form-check-label">{{ option }}</label>
+                    </div>
+                {% endfor %}
+            {% else %}
+            <h4 style="color: black; font-weight: bold;">Type the correct word:</h4>
+                <input type="text" name="answer" class="form-control w-50 mx-auto" required>
+            {% endif %}
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

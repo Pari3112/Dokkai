@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/miscel.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="welcome">Quiz Complete!</h1>
+        <p>Your Score:</p>
+        <h2 style="font-size: 3rem; color: #f1c40f;">{{ score }} / {{ total }}</h2>
+
+        <div class="button-container">
+            <a href="{{ url_for('miscellaneous') }}" class="button">Retry Quiz</a>
+            <a href="{{ url_for('home') }}" class="button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Listening Practice</title>
+</head>
+<body>
+    <h1>Speech Listening Practice</h1>
+
+    {% if correct is not none %}
+        {% if correct %}
+            <p style="color: green;">Correct! Moving to the next level.</p>
+        {% else %}
+            <p style="color: red;">Incorrect. Try an easier word.</p>
+        {% endif %}
+    {% endif %}
+
+    <p>Listen to the word:</p>
+    <audio controls>
+        <source src="{{ audio }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <form action="/listen" method="post">
+        <input type="hidden" name="word" value="{{ word }}">
+        <input type="hidden" name="level" value="{{ level }}">
+        <label for="response">Type what you hear:</label>
+        <input type="text" id="response" name="response" required>
+        <button type="submit">Submit</button>
+    </form>
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speech Listening Practice</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/listening.css') }}"
+    />
+  </head>
+  <body>
+    <div
+      style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+      "
+    >
+      <a
+        href="{{ url_for('home') }}"
+        style="text-decoration: none; display: flex; align-items: center"
+      >
+        <div class="logo-container" style="display: flex; align-items: center">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo"
+            class="logo"
+            style="width: 50px; height: 50px; margin-right: 10px"
+          />
+          <span
+            class="logo-name"
+            style="font-size: 1.5rem; color: #000000; font-weight: bold"
+            >Dokkai</span
+          >
+        </div>
+      </a>
+    </div>
+
+    <div class="game-container">
+      <h1>Speech Listening Practice</h1>
+
+      {% if correct is not none %}
+      <p class="feedback {% if correct %}success{% else %}error{% endif %}">
+        {% if correct %} Correct! 🎉 Moving to the next level. {% else %}
+        Incorrect. 😔 Try an easier word. {% endif %}
+      </p>
+      {% endif %}
+
+      <div class="audio-section">
+        <p>Listen to the word:</p>
+        <audio controls>
+          <source src="{{ audio }}" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <form action="/listen" method="post" class="response-form">
+        <input type="hidden" name="word" value="{{ word }}" />
+        <input type="hidden" name="level" value="{{ level }}" />
+        <label for="response">Type what you hear:</label>
+        <input
+          type="text"
+          id="response"
+          name="response"
+          placeholder="Enter the word"
+          required
+        />
+        <button type="submit" class="game-button">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

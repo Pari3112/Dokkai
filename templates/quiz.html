@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Quiz Challenge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/miscel.css') }}">
+</head>
+<body>
+      
+    <div style="position: absolute; top: 0; left: 0; display: flex; align-items: center; padding: 10px;">
+        <a href="{{ url_for('home') }}" style="text-decoration: none; display: flex; align-items: center;">
+            <div class="logo-container" style="display: flex; align-items: center;">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                     alt="Logo" 
+                     class="logo" 
+                     style="width: 50px; height: 50px; margin-right: 10px;">
+                <span class="logo-name" style="font-size: 1.5rem; color: #000000; font-weight: bold;">Dokkai</span>
+            </div>
+        </a>
+    </div>
+    
+    <div class="container">
+        <h1>{{ question['question'] }}</h1>
+        <form method="POST">
+            <div class="options">
+                {% for option in question['options'] %}
+                    <div>
+                        <label>
+                            <input type="radio" name="option" value="{{ option['id'] }}" required>
+                            <img src="{{ url_for('static', filename='images/' + option['image']) }}" width="100">
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <br><br>
+            <button class="button" type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>
