@@ -1,0 +1,173 @@
+/* General Reset */
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(120deg, #17a2b8, #2EE59D); */
+  background: url("../images/main_background.jpg") no-repeat center center fixed; /* Add background image */
+
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.container {
+  text-align: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Top Bar Styling */
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-bottom: 1px;
+  margin-top: 100px;
+}
+
+.top-bar .button {
+  width: 150px;
+  height: 45px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.top-bar .button:hover {
+  background-color:  #17a2b8;
+  color: #ffffff;
+  transform: translateY(-5px);
+}
+
+/* Logout Button */
+.top-bar .button.logout {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.top-bar .button.logout:hover {
+  background-color: #ff4d4d; /* Bright red */
+  color: #ffffff;
+  transform: translateY(-5px);
+}
+
+
+/* Welcome Section */
+.welcome {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  color: #000000;
+  text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.5);
+}
+
+.welcome span {
+  color: #ffd700;
+  text-shadow: 0 4px 10px rgba(255, 215, 0, 0.8);
+}
+
+/* Main Buttons Section */
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 100%;
+  max-width: 250px;
+  height: 60px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+}
+
+.button:hover {
+  background: #000000;
+  color: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0px 20px 25px rgba(46, 229, 157, 0.5);
+}
+
+.button i {
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+/* Icons Placeholder */
+.icon-listen::before {
+  content: "🎧";
+  margin-right: 8px;
+}
+
+.icon-reading::before {
+  content: "📖";
+  margin-right: 8px;
+}
+
+.icon-writing::before {
+  content: "✍️";
+  margin-right: 8px;
+}
+
+.icon-misc::before {
+  content: "⭐";
+  margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .welcome {
+      font-size: 2rem;
+  }
+
+  .button {
+      font-size: 1rem;
+      height: 50px;
+  }
+  .top-bar {
+      justify-content: center;
+      gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome {
+      font-size: 1.5rem;
+  }
+
+  .button {
+      font-size: 0.9rem;
+      height: 45px;
+  }
+}
